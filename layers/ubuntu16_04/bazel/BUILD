@@ -20,20 +20,6 @@ load("@bazel_toolchains//rules/container:docker_toolchains.bzl", "language_tool_
 load("@base_images_docker//util:run.bzl", "container_run_and_extract")
 load("//revisions/bazel:revision.bzl", "BAZEL_VERSION_SHA256S")
 
-# Tools required by Bazel. Note that we do not add a CC complier here as we
-# will include that in the final container.
-language_tool_layer(
-    name = "bazel-tools",
-    base = "@ubuntu16_04//image",
-    packages = [
-        "bash-completion",
-        "binutils",
-        "patch",
-        "unzip",
-        "zip",
-    ],
-)
-
 # Create image with Bazel installer for all supported versions.
 [toolchain_container(
     name = "bazel_%s_installer_image" % bazel_version,
@@ -61,8 +47,17 @@ language_tool_layer(
 ) for bazel_version, _ in BAZEL_VERSION_SHA256S.items()]
 
 # Language_tool_layer targets for all supported Bazel versions.
+# Note that we do not add a CC complier here as we
+# will include that in the final container.
 [language_tool_layer(
     name = "bazel_%s-ltl" % bazel_version,
     base = "@ubuntu16_04//image",
     tars = [":bazel_%s_tar" % bazel_version],
+    packages = [
+        "bash-completion",
+        "binutils",
+        "patch",
+        "unzip",
+        "zip",
+    ],
 ) for bazel_version, _ in BAZEL_VERSION_SHA256S.items()]

@@ -60,6 +60,22 @@ def dependencies():
             urls = ["https://bazel.build/bazel-release.pub.gpg"],
         )
 
+    # GCloud gpg key necessary to install GCloud in the containers.
+    if "gcloud_gpg" not in excludes:
+        http_file(
+            name = "gcloud_gpg",
+            sha256 = "226ba1072f20e4ff97ee4f94e87bf45538a900a6d9b25399a7ac3dc5a2f3af87",
+            urls = ["https://packages.cloud.google.com/apt/doc/apt-key.gpg"],
+        )
+
+    # Docker gpg key necessary to install Docker in the containers.
+    if "xenial_docker_gpg" not in excludes:
+        http_file(
+            name = "xenial_docker_gpg",
+            sha256 = "1500c1f56fa9e26b9b8f42452a553675796ade0807cdce11975eb98170b3a570",
+            urls = ["https://download.docker.com/linux/ubuntu/gpg"],
+        )
+
     # =============================== Toolchains ===============================
     # Clang
     if "ubuntu16_04_clang_release" not in excludes:
