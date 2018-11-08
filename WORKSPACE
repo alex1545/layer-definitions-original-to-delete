@@ -34,10 +34,12 @@ load(
     "@io_bazel_rules_docker//container:container.bzl",
     container_repositories = "repositories",
 )
+
 container_repositories()
 
 load(
     "//dependencies:dependencies.bzl",
     "dependencies",
 )
+
 dependencies()

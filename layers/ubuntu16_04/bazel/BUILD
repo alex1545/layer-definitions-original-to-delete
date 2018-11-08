@@ -52,7 +52,6 @@ load("//revisions/bazel:revision.bzl", "BAZEL_VERSION_SHA256S")
 [language_tool_layer(
     name = "bazel_%s-ltl" % bazel_version,
     base = "@ubuntu16_04//image",
-    tars = [":bazel_%s_tar" % bazel_version],
     packages = [
         "bash-completion",
         "binutils",
@@ -60,4 +59,5 @@ load("//revisions/bazel:revision.bzl", "BAZEL_VERSION_SHA256S")
         "unzip",
         "zip",
     ],
+    tars = [":bazel_%s_tar" % bazel_version],
 ) for bazel_version, _ in BAZEL_VERSION_SHA256S.items()]
