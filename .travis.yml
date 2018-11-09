@@ -1,0 +1,29 @@
+dist: trusty
+sudo: required
+python:
+  - "2.7"
+os:
+  - linux
+
+jdk:
+  - oraclejdk8
+
+language: go
+go: 1.10.x
+install: true
+
+addons:
+  apt:
+    sources:
+    - debian-sid    # Grab shellcheck from the Debian repo (o_O)
+    - sourceline: 'deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8'
+      key_url: 'https://storage.googleapis.com/bazel-apt/doc/apt-key.pub.gpg'
+    packages:
+    - bazel
+
+install:
+  - go get -u github.com/bazelbuild/buildifier/buildifier
+  - curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && sudo mv container-diff-linux-amd64 /usr/local/bin/container-diff
+
+script:
+  - bazel build ...
