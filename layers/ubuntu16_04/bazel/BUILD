@@ -27,8 +27,10 @@ download_pkgs(
     packages = [
         "bash-completion",
         "binutils",
+        "git",
         "patch",
         "unzip",
+        "wget",
         "zip",
     ],
 )

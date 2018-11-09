@@ -59,7 +59,7 @@ def dependencies():
             name = "bazel_debs",
             bucket = "gs://xingao-debs",
             file = "bazel_debs_20181109.tar",
-            sha256 = "cbd4169f46df3b702557d1ecebd0efc7fd1f8b272be9e6d141f12bcc921bb42c",
+            sha256 = "b6c644a7963cb6e4ac9a18ddae9fa0c4c1342d1d60989b0f7b291f37e12408c2",
         )
 
     if "clang_debs" not in excludes:

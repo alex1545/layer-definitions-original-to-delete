@@ -21,6 +21,15 @@ commandTests:
   command: 'zip'
   args: ['--version']
   expectedOutput: ['.*This is Zip.*']
+- name: 'check-git'
+  command: 'git'
+  args: ['--version']
+  expectedOutput: ['git version .*']
+- name: 'check-wget'
+  command: 'wget'
+  args: ['--version']
+  expectedOutput: ['GNU Wget.* built on linux-gnu.*']
+
 
 
 fileExistenceTests:
