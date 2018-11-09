@@ -128,16 +128,6 @@ def dependencies():
         )
 
     # ============================ Images ============================
-    if "ubuntu16_04_python3" not in excludes:
-        # Get ubuntu16_04-built python3 interpreter from gcr.io/google-appengine/python:latest.
-        # Base image: gcr.io/gcp-runtimes/ubuntu_16_0_4:latest
-        # Base image ref: https://github.com/GoogleCloudPlatform/python-runtime/blob/a8a3e8b2d3239c184843db818e34a06f12dc1190/build.sh#L153
-        container_pull(
-            name = "ubuntu16_04_python3",
-            digest = sha256s()["ubuntu16_04_python3"],
-            registry = "gcr.io",
-            repository = "google-appengine/python",
-        )
 
     if "ubuntu16_04" not in excludes:
         # TODO(xingao) Switch to use "marketplace.gcr.io" registry once Buildkite support proper auth.

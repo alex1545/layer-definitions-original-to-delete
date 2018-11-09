@@ -20,53 +20,28 @@ load(
     "@bazel_toolchains//rules/container:docker_toolchains.bzl",
     "language_tool_layer",
 )
-load("@base_images_docker//util:run.bzl", "container_run_and_extract")
+load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 
-PYTHON_CLEANUP_COMMANDS = (
-    "find /usr/lib/python* -name __pycache__ -exec rm -rf {} +"
-)
-
-container_run_and_extract(
-    name = "python3_tar",
-    commands = [
-        "tar cvf /python.tar --mtime='1970-01-01' /opt/python3.6",
-    ],
-    extract_file = "/python.tar",
-    image = "@ubuntu16_04_python3//image",
-)
-
-language_tool_layer(
-    name = "python-rbe-ltl",
-    base = "@ubuntu16_04//image",
-    env = {
-        "PATH": "$PATH:/opt/python3.6/bin",
-    },
-    installation_cleanup_commands = PYTHON_CLEANUP_COMMANDS,
-    packages = [
-        "python-dev",
-        "python-setuptools",
-        "python3-dev",
-    ],
-    symlinks = {
-        "/usr/bin/python": "/usr/bin/python2.7",
-        "/usr/bin/python3": "/opt/python3.6/bin/python3.6",
-        "/opt/python3.6/bin/python3": "/opt/python3.6/bin/python3.6",
-        "/opt/python3.6/bin/pip3": "/opt/python3.6/bin/pip3.6",
-        "/opt/python3.6/bin/easy_install3": "/opt/python3.6/bin/easy_install-3.6",
-    },
-    tars = [":python3_tar"],
-)
-
-language_tool_layer(
-    name = "python-ltl",
-    base = "@ubuntu16_04//image",
-    installation_cleanup_commands = PYTHON_CLEANUP_COMMANDS,
+download_pkgs(
+    name = "python-debs",
+    image_tar = "@ubuntu16_04//image",
     packages = [
         "python-dev",
         "python-setuptools",
         "python3-dev",
         "software-properties-common",
     ],
+)
+
+PYTHON_CLEANUP_COMMANDS = (
+    "find /usr/lib/python* -name __pycache__ -exec rm -rf {} +"
+)
+
+language_tool_layer(
+    name = "python-ltl",
+    base = "@ubuntu16_04//image",
+    installables_tar = ":python-debs.tar",
+    installation_cleanup_commands = PYTHON_CLEANUP_COMMANDS,
     symlinks = {
         "/usr/bin/python": "/usr/bin/python2.7",
     },

@@ -18,7 +18,20 @@ package(default_visibility = ["//visibility:public"])
 
 load("@bazel_toolchains//rules/container:docker_toolchains.bzl", "language_tool_layer", "toolchain_container")
 load("@base_images_docker//util:run.bzl", "container_run_and_extract")
+load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 load("//revisions/bazel:revision.bzl", "BAZEL_VERSION_SHA256S")
+
+download_pkgs(
+    name = "bazel-debs",
+    image_tar = "@ubuntu16_04//image",
+    packages = [
+        "bash-completion",
+        "binutils",
+        "patch",
+        "unzip",
+        "zip",
+    ],
+)
 
 # Create image with Bazel installer for all supported versions.
 [toolchain_container(
@@ -52,12 +65,7 @@ load("//revisions/bazel:revision.bzl", "BAZEL_VERSION_SHA256S")
 [language_tool_layer(
     name = "bazel_%s-ltl" % bazel_version,
     base = "@ubuntu16_04//image",
-    packages = [
-        "bash-completion",
-        "binutils",
-        "patch",
-        "unzip",
-        "zip",
-    ],
+    # To be changed.
+    installables_tar = ":bazel-debs.tar",
     tars = [":bazel_%s_tar" % bazel_version],
 ) for bazel_version, _ in BAZEL_VERSION_SHA256S.items()]

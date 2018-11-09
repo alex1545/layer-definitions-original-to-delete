@@ -21,12 +21,37 @@ load(
     "language_tool_layer",
 )
 load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
+
+download_pkgs(
+    name = "java8-debs",
+    image_tar = "@ubuntu16_04//image",
+    packages = [
+        "ca-certificates-java",
+        "openjdk-8-jdk-headless",
+        "openjdk-8-jre-headless",
+    ],
+)
 
 JAVA_CLEANUP_COMMANDS = (
     "rm -rf " +
     "/etc/ssl/certs/java/cacerts " +
     "/tmp/hsperfdata_root/* " +
     "/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/classes.jsa"
+)
+
+language_tool_layer(
+    name = "java-ltl",
+    base = "@ubuntu16_04//image",
+    env = {
+        "JAVA_HOME": "/usr/lib/jvm/java-8-openjdk-amd64",
+    },
+    # To be changed.
+    installables_tar = ":java8-debs.tar",
+    installation_cleanup_commands = JAVA_CLEANUP_COMMANDS,
+    symlinks = {
+        "/usr/bin/java": "/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java",
+    },
 )
 
 pkg_tar(
@@ -46,23 +71,6 @@ pkg_tar(
     ],
     package_dir = "/usr/src/jdk/",
     tags = ["manual"],
-)
-
-language_tool_layer(
-    name = "java-ltl",
-    base = "@ubuntu16_04//image",
-    env = {
-        "JAVA_HOME": "/usr/lib/jvm/java-8-openjdk-amd64",
-    },
-    installation_cleanup_commands = JAVA_CLEANUP_COMMANDS,
-    packages = [
-        "ca-certificates-java",
-        "openjdk-8-jdk-headless",
-        "openjdk-8-jre-headless",
-    ],
-    symlinks = {
-        "/usr/bin/java": "/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java",
-    },
 )
 
 language_tool_layer(

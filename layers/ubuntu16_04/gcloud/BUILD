@@ -21,17 +21,31 @@ load(
     "//revisions/gcloud:revision.bzl",
     "GCLOUD_VERSION",
 )
+load("@base_images_docker//package_managers:apt_key.bzl", "add_apt_key")
+load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 
-language_tool_layer(
-    name = "gcloud-ltl",
-    additional_repos = [
-        "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main",
-    ],
-    base = "@ubuntu16_04//image",
+add_apt_key(
+    name = "gcloud-key-image",
+    image = "@ubuntu16_04//image",
     keys = [
         "@gcloud_gpg//file",
     ],
+)
+
+download_pkgs(
+    name = "gcloud-debs",
+    additional_repos = [
+        "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main",
+    ],
+    image_tar = ":gcloud-key-image.tar",
     packages = [
         "google-cloud-sdk=%s" % GCLOUD_VERSION,
     ],
+)
+
+language_tool_layer(
+    name = "gcloud-ltl",
+    base = "@ubuntu16_04//image",
+    # To be changed.
+    installables_tar = ":gcloud-debs.tar",
 )

@@ -39,7 +39,7 @@ add_apt_key(
 )
 
 download_pkgs(
-    name = "docker-packages",
+    name = "docker-debs",
     additional_repos = [
         "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable edge",
     ],
@@ -56,5 +56,6 @@ download_pkgs(
 language_tool_layer(
     name = "docker-ltl",
     base = "@ubuntu16_04//image",
-    installables_tar = ":docker-packages.tar",
+    # To be changed.
+    installables_tar = ":docker-debs.tar",
 )
