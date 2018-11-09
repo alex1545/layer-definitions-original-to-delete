@@ -24,7 +24,7 @@ load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
 load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 
 download_pkgs(
-    name = "java8-debs",
+    name = "java8_debs",
     image_tar = "@ubuntu16_04//image",
     packages = [
         "ca-certificates-java",
@@ -46,8 +46,7 @@ language_tool_layer(
     env = {
         "JAVA_HOME": "/usr/lib/jvm/java-8-openjdk-amd64",
     },
-    # To be changed.
-    installables_tar = ":java8-debs.tar",
+    installables_tar = "@java8_debs//file",
     installation_cleanup_commands = JAVA_CLEANUP_COMMANDS,
     symlinks = {
         "/usr/bin/java": "/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java",

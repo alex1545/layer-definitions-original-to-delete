@@ -25,7 +25,7 @@ load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
 load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 
 download_pkgs(
-    name = "clang-debs",
+    name = "clang_debs",
     image_tar = "@ubuntu16_04//image",
     packages = [
         "libstdc++-4.9-dev",
@@ -56,8 +56,7 @@ language_tool_layer(
     name = "clang-ltl",
     base = "@ubuntu16_04//image",
     env = clang_env,
-    # To be changed.
-    installables_tar = ":clang-debs.tar",
+    installables_tar = "@clang_debs//file",
     tars = [
         ":clang_tar",
         ":libcxx_tar",

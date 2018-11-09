@@ -23,7 +23,7 @@ load(
 load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 
 download_pkgs(
-    name = "python-debs",
+    name = "python_debs",
     image_tar = "@ubuntu16_04//image",
     packages = [
         "python-dev",
@@ -40,7 +40,7 @@ PYTHON_CLEANUP_COMMANDS = (
 language_tool_layer(
     name = "python-ltl",
     base = "@ubuntu16_04//image",
-    installables_tar = ":python-debs.tar",
+    installables_tar = "@python_debs//file",
     installation_cleanup_commands = PYTHON_CLEANUP_COMMANDS,
     symlinks = {
         "/usr/bin/python": "/usr/bin/python2.7",

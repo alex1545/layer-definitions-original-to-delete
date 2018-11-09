@@ -22,7 +22,7 @@ load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 load("//revisions/bazel:revision.bzl", "BAZEL_VERSION_SHA256S")
 
 download_pkgs(
-    name = "bazel-debs",
+    name = "bazel_debs",
     image_tar = "@ubuntu16_04//image",
     packages = [
         "bash-completion",
@@ -65,7 +65,6 @@ download_pkgs(
 [language_tool_layer(
     name = "bazel_%s-ltl" % bazel_version,
     base = "@ubuntu16_04//image",
-    # To be changed.
-    installables_tar = ":bazel-debs.tar",
+    installables_tar = "@bazel_debs//file",
     tars = [":bazel_%s_tar" % bazel_version],
 ) for bazel_version, _ in BAZEL_VERSION_SHA256S.items()]

@@ -24,6 +24,7 @@ load(
     "@io_bazel_rules_docker//container:container.bzl",
     "container_pull",
 )
+load("@bazel_toolchains//rules:gcs.bzl", "gcs_file")
 load(
     "//revisions/clang:revision.bzl",
     "CLANG_REVISION",
@@ -50,6 +51,56 @@ load("//revisions/image:revision.bzl", "sha256s")
 def dependencies():
     """Download dependencies of to use layers in this repository."""
     excludes = native.existing_rules().keys()
+
+    # ================================ Deb tars ================================
+
+    if "bazel_debs" not in excludes:
+        gcs_file(
+            name = "bazel_debs",
+            bucket = "gs://xingao-debs",
+            file = "bazel_debs_20181109.tar",
+            sha256 = "cbd4169f46df3b702557d1ecebd0efc7fd1f8b272be9e6d141f12bcc921bb42c",
+        )
+
+    if "clang_debs" not in excludes:
+        gcs_file(
+            name = "clang_debs",
+            bucket = "gs://xingao-debs",
+            file = "clang_debs_20181109.tar",
+            sha256 = "f972c262bfe71f164581a4f25872a875790454d1ace018d42571f4b016dba4da",
+        )
+
+    if "java8_debs" not in excludes:
+        gcs_file(
+            name = "java8_debs",
+            bucket = "gs://xingao-debs",
+            file = "java8_debs_20181109.tar",
+            sha256 = "552464f3cd25c513fa2729c19b7beb022b826c389fe8032c2aeb0c093e318bcb",
+        )
+
+    if "python_debs" not in excludes:
+        gcs_file(
+            name = "python_debs",
+            bucket = "gs://xingao-debs",
+            file = "python_debs_20181109.tar",
+            sha256 = "fc71cd2ebd1e66b7788574ce38b4814a7d0aacb5cbfda596d07f6f8de1faebca",
+        )
+
+    if "gcloud_debs" not in excludes:
+        gcs_file(
+            name = "gcloud_debs",
+            bucket = "gs://xingao-debs",
+            file = "gcloud_debs_20181109.tar",
+            sha256 = "ce7b1b433357f8289b42e8620050f1858e7d2d2e20311d1ef0cf62c70ef6faec",
+        )
+
+    if "docker_debs" not in excludes:
+        gcs_file(
+            name = "docker_debs",
+            bucket = "gs://xingao-debs",
+            file = "docker_debs_20181109.tar",
+            sha256 = "f1499c804ec1c7205ef73bcfb39a8fe38de0ab065155b5ca7c14aa42c1e88900",
+        )
 
     # ================================ GPG Keys ================================
     # Bazel gpg key necessary to install Bazel in the containers.

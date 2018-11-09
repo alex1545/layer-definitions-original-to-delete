@@ -33,7 +33,7 @@ add_apt_key(
 )
 
 download_pkgs(
-    name = "gcloud-debs",
+    name = "gcloud_debs",
     additional_repos = [
         "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main",
     ],
@@ -46,6 +46,5 @@ download_pkgs(
 language_tool_layer(
     name = "gcloud-ltl",
     base = "@ubuntu16_04//image",
-    # To be changed.
-    installables_tar = ":gcloud-debs.tar",
+    installables_tar = "@gcloud_debs//file",
 )
