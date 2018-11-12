@@ -37,9 +37,30 @@ load(
 
 container_repositories()
 
-load(
-    "//dependencies:dependencies.bzl",
-    "dependencies",
-)
+load("//layers/ubuntu1604/base:deps.bzl", base_deps = "deps")
 
-dependencies()
+base_deps()
+
+load("//layers/ubuntu1604/bazel:deps.bzl", bazel_deps = "deps")
+
+bazel_deps()
+
+load("//layers/ubuntu1604/clang:deps.bzl", clang_deps = "deps")
+
+clang_deps()
+
+load("//layers/ubuntu1604/docker:deps.bzl", docker_deps = "deps")
+
+docker_deps()
+
+load("//layers/ubuntu1604/gcloud:deps.bzl", gcloud_deps = "deps")
+
+gcloud_deps()
+
+load("//layers/ubuntu1604/java:deps.bzl", java8_deps = "deps")
+
+java8_deps()
+
+load("//layers/ubuntu1604/python:deps.bzl", python_deps = "deps")
+
+python_deps()

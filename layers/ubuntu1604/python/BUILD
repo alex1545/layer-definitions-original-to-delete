@@ -16,49 +16,35 @@ licenses(["notice"])  # Apache 2.0
 
 package(default_visibility = ["//visibility:public"])
 
+exports_files(["deps.bzl"])
+
 load(
     "@bazel_toolchains//rules/container:docker_toolchains.bzl",
     "language_tool_layer",
 )
-load(":clang.bzl", "clang_env")
-load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
 load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 
 download_pkgs(
-    name = "clang_debs",
-    image_tar = "@ubuntu16_04//image",
+    name = "python_debs",
+    image_tar = "@ubuntu1604//image",
     packages = [
-        "libstdc++-4.9-dev",
+        "python-dev",
+        "python-setuptools",
+        "python3-dev",
+        "software-properties-common",
     ],
 )
 
-pkg_tar(
-    name = "clang_tar",
-    package_dir = "/usr/local/",
-    strip_prefix = ".",
-    tags = ["manual"],
-    deps = [
-        "@ubuntu16_04_clang_release//file",
-    ],
-)
-
-pkg_tar(
-    name = "libcxx_tar",
-    package_dir = "/usr/local/",
-    strip_prefix = ".",
-    tags = ["manual"],
-    deps = [
-        "@ubuntu16_04_libcxx_release//file",
-    ],
+PYTHON_CLEANUP_COMMANDS = (
+    "find /usr/lib/python* -name __pycache__ -exec rm -rf {} +"
 )
 
 language_tool_layer(
-    name = "clang-ltl",
-    base = "@ubuntu16_04//image",
-    env = clang_env,
-    installables_tar = "@clang_debs//file",
-    tars = [
-        ":clang_tar",
-        ":libcxx_tar",
-    ],
+    name = "python-ltl",
+    base = "@ubuntu1604//image",
+    installables_tar = "@ubuntu1604_python_debs//file",
+    installation_cleanup_commands = PYTHON_CLEANUP_COMMANDS,
+    symlinks = {
+        "/usr/bin/python": "/usr/bin/python2.7",
+    },
 )

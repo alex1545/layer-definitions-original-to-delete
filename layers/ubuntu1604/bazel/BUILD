@@ -16,6 +16,8 @@ licenses(["notice"])  # Apache 2.0
 
 package(default_visibility = ["//visibility:public"])
 
+exports_files(["deps.bzl"])
+
 load("@bazel_toolchains//rules/container:docker_toolchains.bzl", "language_tool_layer", "toolchain_container")
 load("@base_images_docker//util:run.bzl", "container_run_and_extract")
 load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
@@ -23,7 +25,7 @@ load("//revisions/bazel:revision.bzl", "BAZEL_VERSION_SHA256S")
 
 download_pkgs(
     name = "bazel_debs",
-    image_tar = "@ubuntu16_04//image",
+    image_tar = "@ubuntu1604//image",
     packages = [
         "bash-completion",
         "binutils",
@@ -38,7 +40,7 @@ download_pkgs(
 # Create image with Bazel installer for all supported versions.
 [toolchain_container(
     name = "bazel_%s_installer_image" % bazel_version,
-    base = "@ubuntu16_04//image",
+    base = "@ubuntu1604//image",
     files = [
         "@bazel_%s_installer//file" % bazel_version.replace(".", ""),
         ":bazel.bazelrc",
@@ -66,7 +68,7 @@ download_pkgs(
 # will include that in the final container.
 [language_tool_layer(
     name = "bazel_%s-ltl" % bazel_version,
-    base = "@ubuntu16_04//image",
-    installables_tar = "@bazel_debs//file",
+    base = "@ubuntu1604//image",
+    installables_tar = "@ubuntu1604_bazel_debs//file",
     tars = [":bazel_%s_tar" % bazel_version],
 ) for bazel_version, _ in BAZEL_VERSION_SHA256S.items()]

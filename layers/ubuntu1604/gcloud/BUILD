@@ -16,6 +16,8 @@ licenses(["notice"])  # Apache 2.0
 
 package(default_visibility = ["//visibility:public"])
 
+exports_files(["deps.bzl"])
+
 load("@bazel_toolchains//rules/container:docker_toolchains.bzl", "language_tool_layer")
 load(
     "//revisions/gcloud:revision.bzl",
@@ -26,7 +28,7 @@ load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 
 add_apt_key(
     name = "gcloud-key-image",
-    image = "@ubuntu16_04//image",
+    image = "@ubuntu1604//image",
     keys = [
         "@gcloud_gpg//file",
     ],
@@ -45,6 +47,6 @@ download_pkgs(
 
 language_tool_layer(
     name = "gcloud-ltl",
-    base = "@ubuntu16_04//image",
-    installables_tar = "@gcloud_debs//file",
+    base = "@ubuntu1604//image",
+    installables_tar = "@ubuntu1604_gcloud_debs//file",
 )

@@ -16,6 +16,8 @@ licenses(["notice"])  # Apache 2.0
 
 package(default_visibility = ["//visibility:public"])
 
+exports_files(["deps.bzl"])
+
 load("@bazel_toolchains//rules/container:docker_toolchains.bzl", "language_tool_layer", "toolchain_container")
 load("@base_images_docker//package_managers:apt_key.bzl", "add_apt_key")
 load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
@@ -24,7 +26,7 @@ load("@base_images_docker//package_managers:download_pkgs.bzl", "download_pkgs")
 # in the container. So create a prerequisite container first.
 toolchain_container(
     name = "docker-prereq",
-    base = "@ubuntu16_04//image",
+    base = "@ubuntu1604//image",
     packages = [
         "apt-transport-https",
     ],
@@ -34,7 +36,7 @@ add_apt_key(
     name = "docker-key-image",
     image = ":docker-prereq.tar",
     keys = [
-        "@xenial_docker_gpg//file",
+        "@docker_gpg//file",
     ],
 )
 
@@ -55,6 +57,6 @@ download_pkgs(
 
 language_tool_layer(
     name = "docker-ltl",
-    base = "@ubuntu16_04//image",
-    installables_tar = "@docker_debs//file",
+    base = "@ubuntu1604//image",
+    installables_tar = "@ubuntu1604_docker_debs//file",
 )
