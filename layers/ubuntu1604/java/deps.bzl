@@ -42,10 +42,10 @@ def deps():
             urls = ["https://mirror.bazel.build/openjdk/azul-zulu" + JDK_VERSION + "/zsrc" + JDK_VERSION + ".zip"],
         )
 
-    if "ubuntu1604_java8_debs" not in excludes:
+    if "ubuntu1604_java_debs" not in excludes:
         gcs_file(
-            name = "ubuntu1604_java8_debs",
-            bucket = "gs://xingao-debs/ubuntu1604/java8",
-            file = "java8_debs_20181109.tar",
+            name = "ubuntu1604_java_debs",
+            bucket = "gs://xingao-debs/ubuntu1604/java",
+            file = "java_debs_20181109.tar",
             sha256 = "552464f3cd25c513fa2729c19b7beb022b826c389fe8032c2aeb0c093e318bcb",
         )

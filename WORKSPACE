@@ -57,9 +57,9 @@ load("//layers/ubuntu1604/gcloud:deps.bzl", gcloud_deps = "deps")
 
 gcloud_deps()
 
-load("//layers/ubuntu1604/java:deps.bzl", java8_deps = "deps")
+load("//layers/ubuntu1604/java:deps.bzl", java_deps = "deps")
 
-java8_deps()
+java_deps()
 
 load("//layers/ubuntu1604/python:deps.bzl", python_deps = "deps")
 
