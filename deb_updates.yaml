@@ -1,0 +1,14 @@
+bucket: layer-debs
+tools:
+  - distro: ubuntu1604
+    layer: bazel
+  - distro: ubuntu1604
+    layer: clang
+  - distro: ubuntu1604
+    layer: docker
+  - distro: ubuntu1604
+    layer: gcloud
+  - distro: ubuntu1604
+    layer: java
+  - distro: ubuntu1604
+    layer: python
