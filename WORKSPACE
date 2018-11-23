@@ -25,9 +25,10 @@ http_archive(
 
 http_archive(
     name = "base_images_docker",
-    sha256 = "1355ba2f4509409f3f57a4a4a03200b9431f0e37924950b02cc6955b691aee23",
-    strip_prefix = "base-images-docker-c4c3ff85458ce5dd3d93298559605d97fe948d17",
-    urls = ["https://github.com/GoogleCloudPlatform/base-images-docker/archive/c4c3ff85458ce5dd3d93298559605d97fe948d17.tar.gz"],
+    sha256 = "9093487038f348f437931972ad3010080e2168305fcec86eed48bea81104a508",
+    # TODO(xingao): change to a commit in master.
+    strip_prefix = "base-images-docker-ffb6e2f8ce9e726781f6b10b80a8d2818f215fbc",
+    urls = ["https://github.com/GoogleCloudPlatform/base-images-docker/archive/ffb6e2f8ce9e726781f6b10b80a8d2818f215fbc.tar.gz"],
 )
 
 load(
