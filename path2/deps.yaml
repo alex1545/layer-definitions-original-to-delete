@@ -1,3 +1,4 @@
+RevisionsFilePath: "path2/revisions.bzl"
 GCSDeps:
   - name: "BAZEL"
     bucket: "dep-update-service-test"
