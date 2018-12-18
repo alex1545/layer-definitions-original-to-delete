@@ -1,6 +1,6 @@
 RevisionsFilePath: "path1/revisions.bzl"
 GCSDeps:
-  - name: "BAZEL"
+  - name: "BAZEL_INSTALLER"
     bucket: "dep-update-service-test"
     versionRegex: "\\d+(\\.\\d+)*"
     fileRegex: "^bazel/\\d+(\\.\\d+)*/release/bazel-\\d+(\\.\\d+)*-installer-linux-x86_64\\.sh\\.sha256$"
