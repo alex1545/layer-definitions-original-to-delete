@@ -1,6 +1,7 @@
 RevisionsFilePath: "path1/revisions.bzl"
 GCSDeps:
   - name: "BAZEL_INSTALLER"
+    description: "Bazel release installer."
     bucket: "dep-update-service-test"
     versionRegex: "\\d+(\\.\\d+)*"
     fileRegex: "^bazel/\\d+(\\.\\d+)*/release/bazel-\\d+(\\.\\d+)*-installer-linux-x86_64\\.sh\\.sha256$"
@@ -8,7 +9,8 @@ GCSDeps:
     startsWith: "bazel/"
     readShaFromFile: true
     startIndex: 0
-  - name: "CLANG"
+  - name: "CLANG_INSTALLER"
+    description: "Ubuntu1604 Clang tarball pulled from the GCS bucket."
     bucket: "dep-update-service-test"
     versionRegex: "r\\d{6,}"
     fileRegex: "^clang-builds-stable/clang-debian8/clang_r\\d{6,}\\.tar\\.gz$"
