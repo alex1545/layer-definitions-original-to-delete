@@ -10,7 +10,7 @@ GCSDeps:
     description: "Ubuntu1604 libcxx tarball pulled from the GCS bucket."
     bucket: "clang-builds-stable"
     versionRegex: "r\\d{6,}"
-    fileRegex: "^clang-ubuntu16_04/libcxx-msan_\\d{6,}\\.tar\\.gz$"
+    fileRegex: "^clang-ubuntu16_04/libcxx-msan_r\\d{6,}\\.tar\\.gz$"
     startsWith: "clang-ubuntu16_04/libcxx-msan_"
   - name: "DEBS_TARBALL"
     description: "The debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Clang layer."
