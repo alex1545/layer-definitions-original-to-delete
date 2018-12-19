@@ -4,9 +4,8 @@ GCSDeps:
     description: "Bazel release installer."
     bucket: "bazel"
     versionRegex: "\\d+(\\.\\d+)*"
-    fileRegex: "^bazel/\\d+(\\.\\d+)*/release/bazel-\\d+(\\.\\d+)*-installer-linux-x86_64\\.sh\\.sha256$"
+    fileRegex: "^\\d+(\\.\\d+)*/release/bazel-\\d+(\\.\\d+)*-installer-linux-x86_64\\.sh\\.sha256$"
     excludes: "/rc"
-    startsWith: "bazel/"
     readShaFromFile: true
     startIndex: 0
   - name: "DEBS_TARBALL"
