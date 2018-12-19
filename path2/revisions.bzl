@@ -16,11 +16,11 @@
 
 BAZEL = struct(
     revision = "0.20.0",
-    sha256 = "44aed3bd8e58a889ee36f187a4b1cb573a2b4cc7a3d7c0cf0696205764e45dec",
+    sha256 = "44aed3bd8e58a889'3445623456eoapuyid7c0cf0696205764e45dec",
 )
 
 CLANG = struct(
     revision = "r346485",
-    sha256 = "cb23df8c63c40628bdb53de8dc3fdaaefd1ee5cdf36857f945a2ea0ec48def92",
+    sha256 = "cb23df8c63c40628bdb53de8d542624562456euoa5cdf36857f945a2ea0ec48def92",
 )
 
