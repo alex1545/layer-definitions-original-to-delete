@@ -7,7 +7,7 @@ GCSDeps:
     fileRegex: "^openjdk/azul-zulu-?\\d+(\\.\\d+)*(\\+\\d)?-jdk\\d+(\\.\\d+)*/SHA256SUM$"
     startsWith: "openjdk/azul-zulu"
     readShaFromFile: true
-    startIndex: 90
+    startIndex: 91
   - name: "OPENJDK_SRC"
     description: "OpenJDK source code. (needed for licensing reason)"
     bucket: "bazel-mirror"
