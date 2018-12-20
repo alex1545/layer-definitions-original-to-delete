@@ -1,5 +1,21 @@
 RevisionsFilePath: "layers/ubuntu1604/java/revisions.bzl"
 GCSDeps:
+  - name: "OPENJDK_INSTALLER"
+    description: "OpenJDK installer."
+    bucket: "bazel-mirror"
+    versionRegex: "-?\\d+(\\.\\d+)*(\\+\\d)?-jdk\\d+(\\.\\d+)*"
+    fileRegex: "^openjdk/azul-zulu-?\\d+(\\.\\d+)*(\\+\\d)?-jdk\\d+(\\.\\d+)*/SHA256SUM$"
+    startsWith: "openjdk/azul-zulu"
+    readShaFromFile: true
+    startIndex: 90
+  - name: "OPENJDK_SRC"
+    description: "OpenJDK source code. (needed for licensing reason)"
+    bucket: "bazel-mirror"
+    versionRegex: "-?\\d+(\\.\\d+)*(\\+\\d)?-jdk\\d+(\\.\\d+)*"
+    fileRegex: "^openjdk/azul-zulu-?\\d+(\\.\\d+)*(\\+\\d)?-jdk\\d+(\\.\\d+)*/SHA256SUM$"
+    startsWith: "openjdk/azul-zulu"
+    readShaFromFile: true
+    startIndex: 0
   - name: "DEBS_TARBALL"
     description: "The debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Java layer."
     bucket: "layer-deps"
