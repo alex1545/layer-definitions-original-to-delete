@@ -1,7 +1,8 @@
 RevisionsFilePath: "layers/ubuntu1604/python/revisions.bzl"
 GCSDeps:
+
+  # The debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Python layer.
   - name: "DEBS_TARBALL"
-    description: "The debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Python layer."
     bucket: "layer-deps"
     versionRegex: "\\d{8}"
     fileRegex: "^ubuntu1604/python/debs/\\d{8}_python_debs\\.tar$"
