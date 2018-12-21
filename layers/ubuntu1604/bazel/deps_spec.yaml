@@ -1,15 +1,17 @@
 RevisionsFilePath: "layers/ubuntu1604/bazel/revisions.bzl"
 GCSDeps:
+
+  # Bazel release installer.
   - name: "BAZEL_INSTALLER"
-    description: "Bazel release installer."
     bucket: "bazel"
     versionRegex: "\\d+(\\.\\d+)*"
     fileRegex: "^\\d+(\\.\\d+)*/release/bazel-\\d+(\\.\\d+)*-installer-linux-x86_64\\.sh\\.sha256$"
     excludes: "/rc"
     readShaFromFile: true
     startIndex: 0
+    
+  # The Debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Bazel layer.
   - name: "DEBS_TARBALL"
-    description: "The Debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Bazel layer."
     bucket: "layer-deps"
     versionRegex: "\\d{8}"
     fileRegex: "^ubuntu1604/bazel/debs/\\d{8}_bazel_debs\\.tar$"
