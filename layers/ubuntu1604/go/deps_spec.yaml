@@ -1,7 +1,8 @@
 RevisionsFilePath: "layers/ubuntu1604/go/revisions.bzl"
 GCSDeps:
+
+  # Go installer.
   - name: "GO_INSTALLER"
-    description: "Go installer."
     bucket: "golang"
     versionRegex: "\\d+(\\.\\d+)*"
     fileRegex: "^go\\d+(\\.\\d+)*\\.linux-amd64\\.tar\\.gz\\.sha256$"
