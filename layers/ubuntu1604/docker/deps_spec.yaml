@@ -1,9 +1,9 @@
-RevisionsFilePath: "layers/ubuntu1604/docker/revisions.bzl"
-GCSDeps:
+revisionsFilePath: "layers/ubuntu1604/docker/revisions.bzl"
+gcsDeps:
 
   # The debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Docker layer.
-  - Name: "DEBS_TARBALL"
-    Bucket: "layer-deps"
-    VersionRegex: "\\d{8}"
-    FileRegex: "^ubuntu1604/docker/debs/\\d{8}_docker_debs\\.tar$"
-    StartsWith: "ubuntu1604/docker/debs/"
+  - name: "DEBS_TARBALL"
+    bucket: "layer-deps"
+    versionRegex: "\\d{8}"
+    fileRegex: "^ubuntu1604/docker/debs/\\d{8}_docker_debs\\.tar$"
+    startsWith: "ubuntu1604/docker/debs/"
