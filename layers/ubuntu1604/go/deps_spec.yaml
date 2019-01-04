@@ -1,4 +1,5 @@
 revisionsFilePath: "layers/ubuntu1604/go/revisions.bzl"
+
 gcsDeps:
 
   # Go installer.
