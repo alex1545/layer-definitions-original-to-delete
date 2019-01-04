@@ -1,4 +1,5 @@
 revisionsFilePath: "layers/ubuntu1604/java/revisions.bzl"
+
 gcsDeps:
 
   # OpenJDK installer.
