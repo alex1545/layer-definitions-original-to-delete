@@ -1,4 +1,5 @@
 revisionsFilePath: "layers/ubuntu1604/bazel/revisions.bzl"
+
 gcsDeps:
 
   # Bazel release installer.
@@ -9,7 +10,7 @@ gcsDeps:
     excludes: "/rc"
     readShaFromFile: true
     startIndex: 0
-    
+
   # The Debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Bazel layer.
   - name: "DEBS_TARBALL"
     bucket: "layer-deps"
