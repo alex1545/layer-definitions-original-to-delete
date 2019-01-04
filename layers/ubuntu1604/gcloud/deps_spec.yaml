@@ -1,4 +1,5 @@
 revisionsFilePath: "layers/ubuntu1604/gcloud/revisions.bzl"
+
 gcsDeps:
 
   # The debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Gcloud layer.
