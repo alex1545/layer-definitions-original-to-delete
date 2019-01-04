@@ -1,4 +1,5 @@
 revisionsFilePath: "layers/ubuntu1604/clang/revisions.bzl"
+
 gcsDeps:
 
   # Ubuntu1604 Clang tarball pulled from the GCS bucket.
@@ -8,13 +9,13 @@ gcsDeps:
     fileRegex: "^clang-ubuntu16_04/clang_r\\d{6,}\\.tar\\.gz$"
     startsWith: "clang-ubuntu16_04/clang_r"
 
-  # Ubuntu1604 libcxx tarball pulled from the GCS bucket.    
+  # Ubuntu1604 libcxx tarball pulled from the GCS bucket.
   - name: "LIBCXX_INSTALLER"
     bucket: "clang-builds-stable"
     versionRegex: "r\\d{6,}"
     fileRegex: "^clang-ubuntu16_04/libcxx-msan_r\\d{6,}\\.tar\\.gz$"
     startsWith: "clang-ubuntu16_04/libcxx-msan_"
-  
+
   # The debian packages tarball pulled from the GCS bucket required for the Ubuntu1604 Clang layer.
   - name: "DEBS_TARBALL"
     bucket: "layer-deps"
