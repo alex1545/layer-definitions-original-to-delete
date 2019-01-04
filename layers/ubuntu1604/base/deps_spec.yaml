@@ -1,4 +1,5 @@
 revisionsFilePath: "layers/ubuntu1604/base/revisions.bzl"
+
 gcrDeps:
 
   # Google managed base images: marketplace.gcr.io/google/ubuntu16_04:latest.
